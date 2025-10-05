@@ -27,7 +27,7 @@ const QuizPage = ({
   useEffect(() => {
     const storedQuestions = localStorage.getItem("questions");
     if (storedQuestions) {
-      setquestions(JSON.parse(storedQuestions)); // fetch only if no questions saved
+      setquestions(JSON.parse(storedQuestions));
     } else {
       fetchQuestions();
     }
@@ -53,10 +53,10 @@ const QuizPage = ({
   };
 
   const handleQuizSubmit = useCallback(() => {
-    localStorage.removeItem("questions");
-    localStorage.removeItem("useranswers");
     localStorage.removeItem("timeLeft");
     localStorage.removeItem("currentindex");
+    localStorage.removeItem("quizInProgress");
+
     navigate("/report");
   }, [navigate]);
 
@@ -65,12 +65,12 @@ const QuizPage = ({
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
           clearInterval(timer);
-          localStorage.removeItem("timeLeft"); // Clear when quiz ends
+          localStorage.removeItem("timeLeft");
           handleQuizSubmit();
           return 0;
         }
         const newTime = prevTime - 1;
-        localStorage.setItem("timeLeft", newTime.toString()); // Save to localStorage
+        localStorage.setItem("timeLeft", newTime.toString());
         return newTime;
       });
     }, 1000);
@@ -108,7 +108,6 @@ const QuizPage = ({
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
         <div className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-6"></div>
 
-        {/* Loading text */}
         <p className="text-gray-700 text-lg font-medium animate-pulse">
           Loading questions...
         </p>
@@ -118,7 +117,6 @@ const QuizPage = ({
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-6">
-      {/* --- Left Panel --- */}
       <div className="lg:w-1/3 flex flex-col gap-6">
         <div className="hidden lg:block lg:top-6">
           <Timer timeLeft={timeLeft} />
@@ -141,9 +139,9 @@ const QuizPage = ({
             Question {currentQuestionIndex + 1} of {questions.length}
           </p>
 
-          <p className="text-sm text-gray-500 block lg:hidden">
+          <div className="text-sm text-gray-500 block lg:hidden">
             <Timer timeLeft={timeLeft} />
-          </p>
+          </div>
         </div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">

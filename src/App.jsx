@@ -4,6 +4,7 @@ import StartPage from "./pages/StartPage";
 import QuizPage from "./pages/QuizPage";
 import LandingPage from "./pages/LandingPage";
 import ReportPage from "./pages/ReportPage";
+import ProtectQuiz from "./components/ProtectQuiz";
 const App = () => {
   const [questions, setquestions] = useState([]);
   const [userEmail, setuserEmail] = useState("");
@@ -15,7 +16,7 @@ const App = () => {
       throw new Error("Network response was not ok.");
     }
     const data = await res.json();
-    localStorage.setItem("questions", JSON.stringify(data.results)); // store as string
+    localStorage.setItem("questions", JSON.stringify(data.results));
     setquestions(data.results);
   };
 
@@ -29,23 +30,36 @@ const App = () => {
           }
         />
         <Route
-          path="/quiz"
+          path="/home"
           element={
-            <QuizPage
-              questions={questions}
-              setquestions={setquestions}
+            <LandingPage
               setuseranswers={setuseranswers}
-              useranswers={useranswers}
-              fetchQuestions={fetchQuestions}
+              userEmail={userEmail}
             />
           }
         />
-        <Route path="/home" element={<LandingPage />} />
+
+        <Route
+          path="/quiz"
+          element={
+            <ProtectQuiz>
+              <QuizPage
+                questions={questions}
+                setquestions={setquestions}
+                setuseranswers={setuseranswers}
+                useranswers={useranswers}
+                fetchQuestions={fetchQuestions}
+              />
+            </ProtectQuiz>
+          }
+        />
+
         <Route
           path="/report"
           element={
             <ReportPage
               questions={questions}
+              setquestions={setquestions}
               userAnswers={useranswers}
               userEmail={userEmail}
               setuseranswers={setuseranswers}

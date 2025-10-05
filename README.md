@@ -1,16 +1,26 @@
-# React + Vite
+v# IntelliQuiz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+IntelliQuiz is a Quiz Application that takes a 30-minute test including 15 questions. The app is responsive, interactive, and includes smooth animations for a modern quiz experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Timed 15-question quiz fetched from [Open Trivia Database](https://opentdb.com/)
+- Users can navigate between questions, and answers are saved automatically
+- Persistent state during page refresh
+- After submission, detailed report showing correct, incorrect, and unattempted questions
+- Prevents users from navigating back to the quiz after submission
+- Mobile responsive and clean UI with smooth animations using Framer Motion
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Installation Guide
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Sumityadav1811/IntelliQuiz
+cd IntelliQuiz
+npm install
+```

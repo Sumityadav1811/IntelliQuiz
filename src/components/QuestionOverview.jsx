@@ -1,6 +1,6 @@
 import React from "react";
 
-// Displays the navigation panel for questions
+// Displays the navigation panel for questions user can jump to any question using this panel
 const QuestionOverview = ({
   questions,
   userAnswers,
@@ -19,6 +19,8 @@ const QuestionOverview = ({
           const isAttempted = userAnswers[index] !== null;
           const isCurrent = currentQuestionIndex === index;
 
+          // button class for making different color of attempted, unattempted, and skipped questions
+
           let buttonClass =
             "w-full text-sm rounded-md p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-semibold";
           if (isCurrent) {
@@ -36,7 +38,6 @@ const QuestionOverview = ({
               key={index}
               onClick={() => onQuestionSelect(index)}
               className={buttonClass}
-              aria-label={`Go to question ${index + 1}`}
             >
               {index + 1}
             </button>

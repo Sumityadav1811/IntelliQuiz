@@ -148,6 +148,7 @@ const ReportPage = ({
                 </p>
               </div>
 
+              {/* on clicking show detail reports it will toggle the detailed report  */}
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -157,6 +158,8 @@ const ReportPage = ({
                 >
                   Show Detailed Report
                 </motion.button>
+
+                {/* on clicking take quiz it will clear the local storage and navigate to /home  */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

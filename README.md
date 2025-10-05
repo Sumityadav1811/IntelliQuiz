@@ -4,6 +4,10 @@ IntelliQuiz is a Quiz Application that takes a 30-minute test including 15 quest
 
 ---
 
+Project Link:https://intelliiquiz.netlify.app/
+
+---
+
 ## Features
 
 - Timed 15-question quiz fetched from [Open Trivia Database](https://opentdb.com/)
@@ -23,4 +27,5 @@ IntelliQuiz is a Quiz Application that takes a 30-minute test including 15 quest
 git clone https://github.com/Sumityadav1811/IntelliQuiz
 cd IntelliQuiz
 npm install
+
 ```

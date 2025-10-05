@@ -106,7 +106,6 @@ const QuizPage = ({
   if (!currentQuestion) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-        {/* Spinner */}
         <div className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-6"></div>
 
         {/* Loading text */}
@@ -121,43 +120,37 @@ const QuizPage = ({
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-6">
       {/* --- Left Panel --- */}
       <div className="lg:w-1/3 flex flex-col gap-6">
-        <div className="lg:sticky lg:top-6">
+        <div className="hidden lg:block lg:top-6">
           <Timer timeLeft={timeLeft} />
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-200">
+        <div className="bg-white p-4 rounded-xl h-full shadow-lg border border-gray-200">
           <QuestionOverview
             questions={questions}
             userAnswers={useranswers}
             visitedQuestions={visitedQuestions}
             currentQuestionIndex={currentQuestionIndex}
             onQuestionSelect={goToQuestion}
+            className="h-full"
           />
         </div>
       </div>
 
-      {/* --- Right Panel --- */}
       <div className="lg:w-2/3 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col">
-        {/* Question Header */}
         <div className="flex justify-between items-center mb-4">
           <p className="text-sm text-gray-500">
             Question {currentQuestionIndex + 1} of {questions.length}
           </p>
-          <p className="text-sm text-gray-500 hidden sm:block">
-            Time Left:{" "}
-            {Math.floor(timeLeft / 60)
-              .toString()
-              .padStart(2, "0")}
-            :{(timeLeft % 60).toString().padStart(2, "0")}
+
+          <p className="text-sm text-gray-500 block lg:hidden">
+            <Timer timeLeft={timeLeft} />
           </p>
         </div>
 
-        {/* Question Text */}
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
           {decodeHTMLEntities(currentQuestion.question)}
         </h2>
 
-        {/* Answer Options */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {shuffledAnswers.map((answer, index) => (
             <button
               key={index}
@@ -173,7 +166,6 @@ const QuizPage = ({
           ))}
         </div>
 
-        {/* Navigation Buttons */}
         <div className="flex justify-between mt-8 pt-6 border-t border-gray-200">
           <button
             onClick={() => goToQuestion(currentQuestionIndex - 1)}

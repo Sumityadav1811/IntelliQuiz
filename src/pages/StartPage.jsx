@@ -6,6 +6,8 @@ const StartPage = ({ userEmail, setuserEmail }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  //handlesubmit checks whether the email submiited is correct format or not and then navigates to /home
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!userEmail || !/\S+@\S+\.\S+/.test(userEmail)) {
@@ -17,6 +19,8 @@ const StartPage = ({ userEmail, setuserEmail }) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 p-4">
+      {/* using framer motion for better animations and smooth transitions */}
+
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -29,7 +33,7 @@ const StartPage = ({ userEmail, setuserEmail }) => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-4xl font-extrabold text-center text-indigo-600 mb-2"
         >
-          Welcome to the Quiz!
+          Welcome to the IntelliQuiz!
         </motion.h1>
         <motion.p
           initial={{ y: -10, opacity: 0 }}
